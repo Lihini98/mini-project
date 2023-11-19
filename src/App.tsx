@@ -1,17 +1,18 @@
 import React, { useState } from "react";
-import "./App.css";
-import { Note } from "./models/note.model";
 import Header from "./components/Header";
 import NotesList from "./components/NotesList";
-import { Col, Row, Container } from "react-bootstrap";
+import CreateNotes from "./components/CreateNotes";
+import { Note } from "./models/note.model";
+import "./App.css";
+import { Col, Container, Row } from "react-bootstrap";
 
 function App() {
   const [notes, setNotes] = useState<Note[]>([
     {
       id: new Date().toString(),
       title: "Meetings",
-      text: "hello meeting",
-      color: "#dfffff",
+      text: " Schedule meeting with UI/UX Team",
+      color: "#dfdfdf",
       date: new Date().toString(),
     },
   ]);
@@ -22,7 +23,12 @@ function App() {
       <Container className="mt-5">
         <Row>
           <Col>
-            <NotesList notes={notes} />
+            <NotesList notes={notes} setNotes={setNotes} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <CreateNotes notes={notes} setNotes={setNotes} />
           </Col>
         </Row>
       </Container>
@@ -31,25 +37,3 @@ function App() {
 }
 
 export default App;
-
-// import { useState } from "react";
-// import Alert from "./components/Alert";
-// import Button from "./components/Button";
-
-// function App() {
-//   const [alertVisible, setAlertVisibility] = useState(false);
-//   return (
-//     <div>
-//       {alertVisible && (
-//         <Alert onClose={() => setAlertVisibility(false)}>
-//           I am agree with your Terms and conditions.
-//         </Alert>
-//       )}
-//       <Button color="primary" onClick={() => setAlertVisibility(true)}>
-//         Submit
-//       </Button>
-//     </div>
-//   );
-// }
-
-// export default App;

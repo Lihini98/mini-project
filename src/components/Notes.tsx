@@ -1,18 +1,14 @@
 import * as React from "react";
-import { Container, Navbar } from "react-bootstrap";
-import { Note } from "../models/note.model";
-import Card from "react-bootstrap/Card";
+import { Card } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
+import { Note } from "../models/note.model";
 
 interface INotesProps {
   note: Note;
   handleDelete: (id: string) => void;
 }
 
-const Notes: React.FunctionComponent<INotesProps> = ({
-  note,
-  handleDelete,
-}) => {
+const Notes: React.FC<INotesProps> = ({ note, handleDelete }) => {
   return (
     <div className="mb-3">
       <Card style={{ backgroundColor: note.color }}>

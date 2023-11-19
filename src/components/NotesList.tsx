@@ -1,14 +1,15 @@
 import * as React from "react";
-import { Note } from "../models/note.model";
 import Notes from "./Notes";
+import { Note } from "../models/note.model";
 
-interface NotesListProps {
+interface INotesListProps {
   notes: Note[];
+  setNotes: React.Dispatch<React.SetStateAction<Note[]>>;
 }
 
-const NotesList: React.FC<NotesListProps> = ({ notes }) => {
+const NotesList: React.FC<INotesListProps> = ({ notes, setNotes }) => {
   const handleDelete = (id: string) => {
-    console.log(id);
+    setNotes(notes.filter((note) => note.id !== id));
   };
   const renderNotes = (): JSX.Element[] => {
     return notes.map((note) => {
