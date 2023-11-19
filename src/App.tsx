@@ -1,34 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
+import { Note } from "./models/note.model";
+import Header from "./components/Header";
+import NotesList from "./components/NotesList";
+import { Col, Row, Container } from "react-bootstrap";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [notes, setNotes] = useState<Note[]>([
+    {
+      id: new Date().toString(),
+      title: "Meetings",
+      text: "hello meeting",
+      color: "#dfffff",
+      date: new Date().toString(),
+    },
+  ]);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <Header />
+      <Container className="mt-5">
+        <Row>
+          <Col>
+            <NotesList notes={notes} />
+          </Col>
+        </Row>
+      </Container>
+    </>
+  );
 }
 
-export default App
+export default App;
+
+// import { useState } from "react";
+// import Alert from "./components/Alert";
+// import Button from "./components/Button";
+
+// function App() {
+//   const [alertVisible, setAlertVisibility] = useState(false);
+//   return (
+//     <div>
+//       {alertVisible && (
+//         <Alert onClose={() => setAlertVisibility(false)}>
+//           I am agree with your Terms and conditions.
+//         </Alert>
+//       )}
+//       <Button color="primary" onClick={() => setAlertVisibility(true)}>
+//         Submit
+//       </Button>
+//     </div>
+//   );
+// }
+
+// export default App;
